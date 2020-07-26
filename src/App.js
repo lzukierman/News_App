@@ -3,6 +3,9 @@ import Buscador from './Components/Buscador/Buscador'
 import SelectorIdioma from './Components/SelectorIdioma/SelectorIdioma'
 import { Context } from './initialValues'
 
+import './App.css'
+
+
 
 
 function App() {
