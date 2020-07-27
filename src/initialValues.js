@@ -15,6 +15,5 @@ export const AVAILABLE_LENGUAGES = {
     no: 'Norsk',
     pt: 'Português',
     ru: 'Pусский',
-    se: 'Sámi',
     zh: '中文'
 }

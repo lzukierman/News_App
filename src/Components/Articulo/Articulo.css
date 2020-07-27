@@ -1,16 +1,28 @@
 
 .articulo {
     width: 300px;
-    display: inline-block;
-    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 245px 20px auto auto 80px;
+    grid-template-areas:
+        "foto"
+        "fuente"
+        "titulo"
+        "contenido"
+        "footer";
+    margin: 15px;
     border-radius: 34px;
     text-align: center;
     box-shadow: -1px 15px 30px -12px black;
     background-color: white;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: calc(100% - 30px);
 }
 
 
 .articulo__imagen {
+    grid-area: foto;
     height: 230px;
     margin-bottom: 14px;
     border-top-left-radius: 14px;
@@ -19,7 +31,21 @@
     object-fit: cover;
 }
 
-.fuente{
+.fechaImagen{
+    position: sticky;
+    margin-top: -33px;
+    z-index: 14;
+    background: black;
+    color: white;
+    padding: 3px 6px;
+    border-radius: 14px;
+    display: flex;
+    justify-content: center;
+    border: solid;
+}
+
+.fuente {
+    grid-area: fuente;
     text-transform: uppercase;
     font-size: 12px;
     font-weight: 700;
@@ -27,22 +53,21 @@
     color: blue;
 }
 
-.titulo{
+.titulo {
+    grid-area: titulo;
     font-size: 26px;
     color: black;
     font-weight: 900;
-    margin-bottom: 5px;
     margin-right: 14px;
     margin-left: 14px;
     line-height: 1.88rem;
-
-    }
+    align-self: center;
+}
 
 .descripcion {
+    grid-area: contenido;
     padding: 20px;
     margin-bottom: 10px;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 
 
@@ -51,20 +76,31 @@
 } */
 
 .articulo__footer {
+    grid-area: footer;
     background: blue;
     font-weight: 700;
     border-bottom-left-radius: 14px;
-    border-bottom-right-radius: 14px; 
-} 
-
-.mitad {
+    border-bottom-right-radius: 14px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
     color: white;
-    width: 38%;
-    display: inline-block;
-    padding: 20px 15px;
-    border-right: 1px solid white;
 }
 
-.no-border {
-    border-right: none;
+
+
+.imagen-icono{
+    width: 2rem;
+    filter: invert(1); 
+    padding: 0 0.50rem;
+}
+
+.verMas {
+    color:white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    text-decoration: none;
 }

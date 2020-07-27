@@ -1,0 +1,14 @@
+.listaArticulos {
+    display: flex;
+    flex-flow: wrap;
+    flex-direction: row;
+    list-style: none;
+    justify-content: center;
+}
+
+.articulos-container{
+    transform: scale(0.89) translate(2.25%, 0);
+    transform-origin: left top;
+    width: 107vw;
+}
+

@@ -13,12 +13,12 @@ const SendArticles = ({inputValue}) => {
    const [results, isLoading] = useFetch(`https://newsapi.org/v2/everything?q=${inputValue}&language=${lenguaje}&apiKey=${key}`, {})
   
     return( 
-        <div>
+        <div className='articulos-container'>
             <h1>
                 articles
             </h1>
 
-            <ul>
+            <ul className='listaArticulos'>
             {
             // {
             //     status: 'ok',
