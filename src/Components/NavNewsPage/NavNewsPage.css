@@ -1,0 +1,22 @@
+.nav-newspage{
+    display:grid;
+    grid-template-columns: 150px 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas:
+    'logo buscador'
+    'busqueda busqueda';
+    
+    background-color:rgb(87, 128, 185)
+}
+
+.logo img{
+    grid-area: logo;
+}
+
+.buscador{
+    grid-area: buscador;
+}
+
+.busqueda {
+    grid-area: busqueda;
+}

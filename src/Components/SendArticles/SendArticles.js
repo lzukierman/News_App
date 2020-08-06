@@ -3,14 +3,15 @@ import useFetch from '../../Hooks/useFetch'
 import {Context, key} from '../../initialValues'
 import  Articulo from '../Articulo/Articulo'
 
+
 import './SendArticles.css'
 
-const SendArticles = ({inputValue}) => {
-
+const SendArticles = () => {
     
-    const {lenguaje} = useContext(Context)
+    
+    const {lenguaje, firstInput} = useContext(Context)
 
-   const [results, isLoading] = useFetch(`https://newsapi.org/v2/everything?q=${inputValue}&language=${lenguaje}&apiKey=${key}`, {})
+   const [results, isLoading] = useFetch(`https://newsapi.org/v2/everything?q=${firstInput}&language=${lenguaje}&apiKey=${key}`, {})
   
     return( 
         <div className='articulos-container'>

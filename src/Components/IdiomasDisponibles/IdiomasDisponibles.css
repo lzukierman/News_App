@@ -1,0 +1,125 @@
+.nav-idiomas{
+  position: absolute;
+    top: 5%;
+    left: 89.5%;
+    transform: translate(-50%, -50%) scale(0.80);
+    box-sizing: border-box;
+    user-select: none;
+    z-index: 10;
+}
+
+.idioma{
+  width: 192px;
+  background: #242526;
+  border-radius: 5px;
+  line-height: 50px;
+  font-size: 20px;
+  font-weight: 500;
+  color: #b0b3b8;
+  padding: 0 20px;
+  display: flex;
+  height: 8vh;
+  justify-content: center;
+  align-items: center;
+}
+.nav-idiomas .idioma span{
+  float: right;
+  line-height: 50px;
+  font-size: 28px;
+  cursor: pointer;
+  transform: scale(0.98);
+  padding-left: 22px;
+}
+
+.idioma.a-seleccionar{
+  display: grid;
+  grid-template-columns: 30px 162px;
+  grid-template-rows: 8vh;
+  grid-template-areas: 'bandera idioma';
+  margin: 0;
+  padding: 0;
+}
+
+.idioma.a-seleccionar p{
+  grid-area: idioma;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 50px;
+  font-size: 20px;
+  font-weight: 500;
+  color: #b0b3b8;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bandera-a-seleccionar{
+  grid-area: bandera;
+}
+
+
+
+
+.contenedor-idiomas{
+  top: 65px;
+  width: 192px;
+  border-radius: 5px;
+  background: #242526;
+  overflow: hidden;
+  position:absolute;
+  display: none;
+  transition: all 3s ease; 
+}
+
+
+.contenedor-idiomas.show{
+  overflow: visible;
+  display:block;
+}
+
+.menu-idiomas{
+  width: 192px;
+  list-style: none;
+  transition: all 0.3s ease;
+}
+.menu-idiomas  li{
+  line-height: 55px;
+  transition: filter 300ms;
+}
+.menu-idiomas li .icono-idiomas{
+  position: relative;
+  color: #b0b3b8;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 0 10px;
+  display: flex;
+  border-radius: 8px;
+  align-items: center;
+  text-decoration: none;
+}
+
+.menu-idiomas li .icono-idiomas{
+  height: 40px;
+  width: 40px;
+  margin-right: 13px;
+  background: #ffffff1a;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  border-radius: 50%;
+}
+
+
+.menu-idiomas li .icono-idiomas span{
+  line-height: 40px;
+  font-size: 20px;
+  color: #b0b3b8;
+}
+
+
+.menu-idiomas li:hover{
+  filter: brightness(1.2);  
+  
+}
+

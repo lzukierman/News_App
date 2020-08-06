@@ -87,7 +87,7 @@ const Articulo = ({ articulo }) => {
         e.target.src = `https://bitsofco.de/content/images/2018/12/broken-1.png`
     }
 
-    const contenido = () => description === '' ? limpiador(content, '[') : description;
+    const contenido = () => description === '' || description === null ? limpiador(content, '[') : description;
 
     const limpiador = (string, element) => {
         let contenido = string.split('');

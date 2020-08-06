@@ -1,0 +1,62 @@
+.buscador{
+  width: 100%;
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+
+.buscador .input-data {
+  position: absolute;    
+}
+
+.buscador .input-data input{
+  height: 40px;
+  width: 450px;
+  border: none;
+  font-size: 17px;
+  border-bottom: 2px solid silver;
+  background-color: white;
+  border-radius: 40px;
+  transition: width .35s ease;
+  padding-left: 20px;
+
+}
+
+
+
+.input-data input:focus ~ label{
+  font-size: 15px;
+  color: white;
+  background-color: blue;
+  border-radius: 50%;
+}
+
+
+
+.buscador .input-data label{
+  position: absolute;
+  bottom: 10px;
+  right: 12px;
+  color: blue;
+  pointer-events: none;
+  transition: all 0.35s ease-in-out;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 6px;
+  position:absolute;
+  cursor: pointer;
+  z-index: 10;
+  pointer-events: all;
+}
+
+
+ .input-data input:focus {
+    width: 600px;
+}

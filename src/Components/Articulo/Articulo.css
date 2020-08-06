@@ -2,7 +2,7 @@
 .articulo {
     width: 300px;
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 300px;
     grid-template-rows: 245px 20px auto auto 80px;
     grid-template-areas:
         "foto"
@@ -62,12 +62,16 @@
     margin-left: 14px;
     line-height: 1.88rem;
     align-self: center;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 .descripcion {
     grid-area: contenido;
     padding: 20px;
     margin-bottom: 10px;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 
