@@ -2,15 +2,15 @@
 
 import {
     GO_HOME, LEAVE_HOME, CHANGE_INTERFACE,
-    ADD_IDIOMA, REMOVE_IDIOMA, ADD_ALL_IDIOMA,
+    ADD_IDIOMA, REMOVE_IDIOMA, ADD_ALL_IDIOMA,REMOVE_ALL_IDIOMA,
     ADD_PAIS, REMOVE_PAIS, ADD_ALL_PAIS,
     REMOVE_ALL_PAIS, ADD_REGION, REMOVE_REGION,
     ADD_ALL_REGION, REMOVE_ALL_REGION,
     ADD_FUENTE, REMOVE_FUENTE, ADD_ALL_FUENTE,
     REMOVE_ALL_FUENTE, ADD_CATEGORIA,
     REMOVE_CATEGORIA, ADD_ALL_CATEGORIA, REMOVE_ALL_CATEGORIA
-} from '../actions'
-import { REMOVE_ALL_IDIOMA } from '../actions/contextDispatch';
+} from '../actions/contextDispatch'
+// import { REMOVE_ALL_IDIOMA } from '../actions/contextDispatch';
 
 
 
@@ -52,7 +52,7 @@ const reducer = (state, action) => {
                     ...busqueda,
                     idioma: {
                         ...idioma,
-                        paisesSeleccionados: paisesSeleccionados
+                       idiomasSeleccionados:idiomasSeleccionados
                             .map(idioma => {
                                 if (idioma.idioma === action.payload.idioma) {
                                     return {
@@ -255,7 +255,7 @@ const reducer = (state, action) => {
                     ...busqueda,
                     fuente: {
                         ...fuente,
-                        fuenteSeleccionadas: fuenteSeleccionadas
+                        fuentesSeleccionadas: fuentesSeleccionadas
                             .map(fuente => {
                                 if (fuente.fuente === action.payload.fuente) {
                                     return {
@@ -275,7 +275,7 @@ const reducer = (state, action) => {
                     ...busqueda,
                     fuente: {
                         ...fuente,
-                        fuenteSeleccionadas: fuenteSeleccionadas
+                        fuentesSeleccionadas: fuentesSeleccionadas
                             .map(fuente => {
                                 if (fuente.fuente === action.payload.fuente) {
                                     return {
@@ -295,7 +295,7 @@ const reducer = (state, action) => {
                     ...busqueda,
                     fuente: {
                         ...fuente,
-                        fuenteSeleccionadas: fuenteSeleccionadas
+                        fuentesSeleccionadas: fuentesSeleccionadas
                             .map(fuente => ({ ...fuente, seleccionado: true }))
                     }
                 }
@@ -308,7 +308,7 @@ const reducer = (state, action) => {
                     ...busqueda,
                     fuente: {
                         ...fuente,
-                        fuenteSeleccionadas: fuenteSeleccionadas
+                        fuentesSeleccionadas: fuentesSeleccionadas
                             .map(fuente => ({ ...fuente, seleccionado: false }))
                     }
                 }
@@ -324,7 +324,7 @@ const reducer = (state, action) => {
                     ...busqueda,
                     categoria: {
                         ...categoria,
-                        categoriasSeleccionadas: fuenteSeleccionadas
+                        categoriasSeleccionadas: categoriasSeleccionadas
                             .map(categoria => {
                                 if (categoria.categoria === action.payload.categoria) {
                                     return {
@@ -344,7 +344,7 @@ const reducer = (state, action) => {
                     ...busqueda,
                     categoria: {
                         ...categoria,
-                        categoriasSeleccionadas: fuenteSeleccionadas
+                        categoriasSeleccionadas: categoriasSeleccionadas
                             .map(categoria => {
                                 if (categoria.categoria === action.payload.categoria) {
                                     return {
