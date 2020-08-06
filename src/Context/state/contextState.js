@@ -12,7 +12,9 @@ const {
     regionesSeleccionadas,
     categoriasSeleccionadas } = Constants;
 
-const initialState = {
+export const initialState = {
+    firstInput: '',
+    url: '',
     isInHome: true,
     lenguajeInterface: {
         idiomasDisponibles,

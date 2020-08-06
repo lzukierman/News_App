@@ -24,6 +24,10 @@ export const ADD_ALL_REGION = "ADD_ALL_REGION";
 export const REMOVE_ALL_REGION = "REMOVE_ALL_REGION";
 
 // FUENTE
+
+
+export const DEFAULT_FUENTE = "DEFAULT_FEUNTE"
+export const ADD_DEFAULT_FUENTE = "ADD_DEFAULT_FUENTE"
 export const ADD_FUENTE = "ADD_FUENTE";
 export const REMOVE_FUENTE = "REMOVE_FUENTE";
 export const ADD_ALL_FUENTE = "ADD_ALL_FUENTE";
@@ -35,6 +39,14 @@ export const ADD_CATEGORIA = "ADD_CATEGORIA";
 export const REMOVE_CATEGORIA = "REMOVE_CATEGORIA";
 export const ADD_ALL_CATEGORIA = "ADD_ALL_CATEGORIA";
 export const REMOVE_ALL_CATEGORIA = "REMOVE_ALL_CATEGORIA";
+
+
+// FIRST INPUT
+export const CHANGE_FIRST_INPUT = "CHANGE_FIRST_INPUT";
+
+//URL 
+export const CHANGE_URL = 'CHANGE_URL'
+
 
 // HOME ACTIONS
 export let goHome = () => {
@@ -166,6 +178,24 @@ export let removeAllRegion = () => {
 
 // FUENTE ACTIONS
 
+export let defaultFuente = listObj => {
+    return{
+        type: DEFAULT_FUENTE,
+        payload: {
+            listObj
+        }
+    }
+}
+
+export let addDefaultFuente = listObj => {
+    return {
+        type: ADD_DEFAULT_FUENTE,
+        payload: {
+            listObj
+        }
+    }
+}
+
 export let addFuente = fuente => {
     return {
         type: ADD_ALL_FUENTE,
@@ -226,5 +256,29 @@ export let addAllCategoria = () => {
 export let removeAllCategoria = () => {
     return {
         type: REMOVE_ALL_CATEGORIA
+    }
+}
+
+
+// FIRST INPUT ACTIONS
+
+export let changeFirstInput = (url) => {
+    return {
+        type: CHANGE_FIRST_INPUT,
+        payload: {
+            url
+        }
+    }
+}
+
+
+// URL ACTIONS
+
+export let changeUrl = (url) => {
+    return {
+        type: CHANGE_URL,
+        payload: {
+            url
+        }
     }
 }

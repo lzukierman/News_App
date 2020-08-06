@@ -1,16 +1,28 @@
 // https://stackoverflow.com/questions/57296549/hooks-combine-multiple-reducers-when-using-usereducer
 
 import {
-    GO_HOME, LEAVE_HOME, CHANGE_INTERFACE,
+    // HOME
+    GO_HOME, LEAVE_HOME,
+    // INTERFACE
+    CHANGE_INTERFACE,
+    // IDIOMA
     ADD_IDIOMA, REMOVE_IDIOMA, ADD_ALL_IDIOMA,REMOVE_ALL_IDIOMA,
+    // PAIS
     ADD_PAIS, REMOVE_PAIS, ADD_ALL_PAIS,
-    REMOVE_ALL_PAIS, ADD_REGION, REMOVE_REGION,
+    REMOVE_ALL_PAIS,
+    // REGION
+    ADD_REGION, REMOVE_REGION,
     ADD_ALL_REGION, REMOVE_ALL_REGION,
-    ADD_FUENTE, REMOVE_FUENTE, ADD_ALL_FUENTE,
-    REMOVE_ALL_FUENTE, ADD_CATEGORIA,
-    REMOVE_CATEGORIA, ADD_ALL_CATEGORIA, REMOVE_ALL_CATEGORIA
+    // FUENTE
+    DEFAULT_FUENTE, ADD_DEFAULT_FUENTE, ADD_FUENTE, REMOVE_FUENTE,
+    ADD_ALL_FUENTE, REMOVE_ALL_FUENTE,
+    // CATEGORIA
+    ADD_CATEGORIA, REMOVE_CATEGORIA, ADD_ALL_CATEGORIA, REMOVE_ALL_CATEGORIA,
+    // FIRST INPUT
+    CHANGE_FIRST_INPUT,
+    // URL
+    CHANGE_URL, DEFAULT_FUENTE
 } from '../actions/contextDispatch'
-// import { REMOVE_ALL_IDIOMA } from '../actions/contextDispatch';
 
 
 
@@ -18,7 +30,7 @@ import {
 
 
 
-const reducer = (state, action) => {
+export const reducer = (state, action) => {
     switch (action.type) {
 
         // HOME
@@ -248,6 +260,37 @@ const reducer = (state, action) => {
             }
 
         ////////FUENTE
+
+        case DEFAULT_FUENTE:
+        return {
+            ...state,
+            busqueda: {
+                ...busqueda,
+                fuente: {
+                    ...fuente,
+                    fuentesDisponibles: action.payload.listObj
+                }
+            }
+        }
+
+        case ADD_DEFAULT_FUENTE:
+        return {
+            ...state,
+            busqueda: {
+                ...busqueda,
+                fuente: {
+                    ...fuente,
+                    fuentesSeleccionadas: 
+                    action.payload.listObj.map(fuente =>{
+                        return{
+                            fuente: fuente.name,
+                            seleccionado: false
+                        }
+                    })
+                }
+            }
+        }
+        
         case ADD_FUENTE:
             return {
                 ...state,
@@ -384,6 +427,23 @@ const reducer = (state, action) => {
             }
 
 
+        // FIRST INPUT
+
+        case CHANGE_FIRST_INPUT:
+            return {
+                ...state,
+                firstInput : action.payload.url
+            }
+
+        // URL
+        case CHANGE_URL:
+            return {
+                ...state,
+                url: action.payload.url
+            }
+
+
+            
         // ACA TERMINA SWITCH
     }
     // ACA TERMINA REDUCER
