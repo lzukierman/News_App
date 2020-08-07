@@ -1,13 +1,15 @@
 import React, { useState, useContext } from 'react'
+import { DispatchContext } from '../../App'
+import {changeFirstInput, leaveHome} from '../../Context/actions/contextDispatch'
 import 'font-awesome/css/font-awesome.min.css'
 import './BuscadorHome.css'
-import { Context } from '../../initialValues';
-
 const BuscadorHome = () => {
 
+
+    const dispatch = useContext(DispatchContext)
     const [search, setSearch] = useState('');
 
-    const { cambiarInput, cambiarPagina, dataSource, userData} = useContext(Context)
+
 
 
     const handleInput = (e) => {
@@ -16,11 +18,9 @@ const BuscadorHome = () => {
 
     const handleSearch = (e) => {
         e.preventDefault()
-        console.log(search)
         if (search !== '') {
-            console.log('se mando supuestamente')
-            cambiarInput(search)
-            cambiarPagina()
+            dispatch(changeFirstInput(search))
+            dispatch(leaveHome())
         } else {
             alert('Ingrese su busqueda')
         }
@@ -34,8 +34,7 @@ const BuscadorHome = () => {
 
     return (
         <div className='buscador'>
-                {console.log(dataSource)}
-                {console.log(userData)}
+             
 
 
             <div className="input-data">

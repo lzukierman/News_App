@@ -42,6 +42,7 @@ export const REMOVE_ALL_CATEGORIA = "REMOVE_ALL_CATEGORIA";
 
 
 // FIRST INPUT
+export const CHANGE_FIRST_TIME = "CHANGE_FIRST_TIME"
 export const CHANGE_FIRST_INPUT = "CHANGE_FIRST_INPUT";
 
 //URL 
@@ -268,6 +269,12 @@ export let changeFirstInput = (url) => {
         payload: {
             url
         }
+    }
+}
+
+export let changeFirstTime = () => {
+    return {
+        type: CHANGE_FIRST_TIME
     }
 }
 

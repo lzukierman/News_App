@@ -4,7 +4,6 @@ const {
     idiomasDisponibles,
     paisesDisponibles,
     regionesDisponibles,
-    fuentesDisponibles,
     categoriasDisponibles,
     fechasDisponibles,
     idiomasSeleccionados,
@@ -13,7 +12,10 @@ const {
     categoriasSeleccionadas } = Constants;
 
 export const initialState = {
-    firstInput: '',
+    firstInput: {
+        firstTime: true,
+        input: ''
+    },
     url: '',
     isInHome: true,
     lenguajeInterface: {
@@ -34,8 +36,8 @@ export const initialState = {
             regionesSeleccionadas
         },
         fuente: {
-            fuentesDisponibles,
-            fuentesSeleccionadas
+            fuentesDisponibles: [],
+            fuentesSeleccionadas: []
         },
         categoria: {
             categoriasDisponibles,

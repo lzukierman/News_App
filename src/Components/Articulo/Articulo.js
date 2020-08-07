@@ -1,32 +1,18 @@
 import React, { useContext } from 'react';
-import { Context } from '../../initialValues'
 import moment from 'moment'
-
-import  iconoDiario from '../Articulo/iconos/flecha.png'
+import { StateContext } from '../../App'
+import iconoDiario from '../Articulo/iconos/flecha.png'
 import 'moment/min/locales'
 
 import './Articulo.css';
 
 
-// const articulo = {
-//     author: "Iván Cordovilla",
-//     content: "Nicolás Maquiavelo lo sintetizó en una frase a la que, casi cinco siglos después de El Príncipe, se sigue recurriendo en el fútbol. ¿El fin? Ganar. ¿Los medios? ¿Los que sean? Aquello parece que pens… [+12491 chars]",
-//     description: "24 de junio de 1990. Stadio delle Alpi, Turín, Italia. En el Brasil-Argentina de octavos de final del Mundial, Branco empieza a sentirse mal, mareado y confundido. Se buscan culpables.",
-//     publishedAt: "2020-06-24T06:17:31Z",
-//     source: {
-//         id: null,
-//         name: "As.com"
-//     },
-//     title: "El bidón de Branco, ¿verdad o leyenda?",
-//     url: "https://as.com/futbol/2020/06/24/reportajes/1592979406_201752.html",
-//     urlToImage: "https://as01.epimg.net/futbol/imagenes/2020/06/21/reportajes/1592764007_104584_1592765734_noticia_normal.jpg"
-
-// }
-
-
 const Articulo = ({ articulo }) => {
+    const { state } = useContext(StateContext)
 
-    const { lenguaje } = useContext(Context)
+    const { lenguajeInterface } = state
+
+    const { idiomaInterface } = lenguajeInterface
 
     const {
         content,
@@ -104,14 +90,14 @@ const Articulo = ({ articulo }) => {
             case 'no':
                 return 'nb'
             default:
-                return lenguaje;
+                return idiomaInterface;
         }
     }
 
     const transformarFecha = () => {
         let fecha = limpiador(publishedAt, 'Z');
         fecha = moment(fecha, "YYYY-MM-DD hh:mm:ss")
-            .locale(corregirIdioma(lenguaje))
+            .locale(corregirIdioma(idiomaInterface))
         return fecha.format('LLLL')
     }
 
@@ -137,13 +123,13 @@ const Articulo = ({ articulo }) => {
             </div>
             {/* </section> */}
             <div className='articulo__footer'>
-                <a 
-                className='verMas' 
-                href={url} 
-                target='_blank' 
-                rel='noopener noreferrer'> 
-                    Ver mas 
-                    <img className='imagen-icono' src={iconoDiario} alt='newspaper'/>
+                <a
+                    className='verMas'
+                    href={url}
+                    target='_blank'
+                    rel='noopener noreferrer'>
+                    Ver mas
+                    <img className='imagen-icono' src={iconoDiario} alt='newspaper' />
                 </a>
             </div>
         </div>

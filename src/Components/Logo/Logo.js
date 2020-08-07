@@ -1,16 +1,19 @@
 import React,{Fragment, useContext} from 'react'
 import LogoImagen from '../../png/logo.png'
-import { Context } from '../../initialValues'
+import { StateContext, DispatchContext } from '../../App'
+import {goHome} from '../../Context/actions/contextDispatch'
+
 import './Logo.css'
 
 
 const Logo = () => {
 
-    const { isInHome, cambiarPagina} = useContext(Context)
+    const {isInHome} = useContext(StateContext)
+    const dispatch = useContext(DispatchContext)
 
     const handleClick = () => {
         if(!isInHome){
-            cambiarPagina()
+            dispatch(goHome())
         }
     }
     

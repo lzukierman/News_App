@@ -1,4 +1,4 @@
-import React, { useState, useEffect, createContext, useReducer } from 'react';
+import React, { useEffect, createContext, useReducer} from 'react';
 import { defaultFuente, addDefaultFuente, addIdioma, changeInterface } from './Context/actions/contextDispatch'
 import { key, keyIp } from './initialValues'
 import {initialState} from './Context/state/contextState'
@@ -9,55 +9,74 @@ import useFetch from './Hooks/useFetch'
 
 
 import './App.css'
-
+// Contexts  
+export const StateContext = createContext()
+export const DispatchContext = createContext()
 
 
 function App() {
 
   const [state,dispatch] = useReducer(reducer,initialState)
+  const {busqueda} = state
+   
+  // Devuelve datos IP del cliente
+  // const [userData] = useFetch(`https://ipinfo.io?token=${keyIp}`)
   
-  const StateContext = createContext()
-  const DispatchContext = createContext()
-  
-
-   // Devuelve datos IP del cliente
-  const [userData] = useFetch(`https://ipinfo.io?token=${keyIp}`)
-
   // Devuelve todas las fuentes de la API-NEWS
   const [dataSource] = useFetch(`https://newsapi.org/v2/sources?apiKey=${key}`)
 
-
+  const {fuente,idioma} = busqueda
+  const {fuentesDisponibles} = fuente
+  const { idiomasDisponibles } = idioma
+  
+  
   useEffect(() => {
     dispatch(defaultFuente(dataSource.sources))
   }, [dataSource])
-
+  
   useEffect(() => {
-    dispatch(addDefaultFuente(state.busqueda.fuente.fuentesDisponibles))
-  }, [state.busqueda.fuente.fuentesDisponibles])
+    if(fuentesDisponibles !== undefined){
+      dispatch(addDefaultFuente(fuentesDisponibles))
+    }
+  }, [fuentesDisponibles])
+  
+  useEffect(()=> {
+    async function fetchMe(){
+      let userRes = await fetch(`https://ipinfo.io?token=${keyIp}`)
+      userRes = await userRes.json()
 
-  useEffect(() => {
-     fetch(`https://restcountries.eu/rest/v2/alpha/${userData.country}`)
-     .then(data => data.json())
-     .then(res => {
-        let userIdioma = res.languages[0].iso639_1
-        let idiomas = Object.keys(state.busqueda.idioma.idiomasDisponibles)
-        if(idiomas.indexOf(userIdioma) !== -1){
-          dispatch(addIdioma(userIdioma));
-          dispatch(changeInterface(userIdioma));
-        } else {
-          dispatch(addIdioma("en"));
-          dispatch(changeInterface("en"));
-        }
-     })
-  }, [userData])
+      let countryRes = await fetch(`https://restcountries.eu/rest/v2/alpha/${userRes.country}`)
+      countryRes = await countryRes.json()
+      
+      return countryRes
+      }
+    
+    async function dispatchTime(){
+      let res = await fetchMe()
+      let userIdioma = res.languages[0].iso639_1
+      let idiomas = Object.keys(idiomasDisponibles)
+      if(idiomas.indexOf(userIdioma) !== -1){
+        dispatch(addIdioma(userIdioma));
+        dispatch(changeInterface(userIdioma));
+      } else {
+        dispatch(addIdioma("en"));
+        dispatch(changeInterface("en"));
+      }  
+    }
 
+    dispatchTime()
+  }, [idiomasDisponibles])
+   
+  
 
-
-  return (
+return (
     <DispatchContext.Provider
       value={ dispatch }>
       <StateContext.Provider
-        value={state}>
+        value={{
+          state,
+          busqueda
+        }}>
         {
           state.isInHome ?
             (<Home />) :

@@ -6,7 +6,7 @@ import {
     // INTERFACE
     CHANGE_INTERFACE,
     // IDIOMA
-    ADD_IDIOMA, REMOVE_IDIOMA, ADD_ALL_IDIOMA,REMOVE_ALL_IDIOMA,
+    ADD_IDIOMA, REMOVE_IDIOMA, ADD_ALL_IDIOMA, REMOVE_ALL_IDIOMA,
     // PAIS
     ADD_PAIS, REMOVE_PAIS, ADD_ALL_PAIS,
     REMOVE_ALL_PAIS,
@@ -19,9 +19,9 @@ import {
     // CATEGORIA
     ADD_CATEGORIA, REMOVE_CATEGORIA, ADD_ALL_CATEGORIA, REMOVE_ALL_CATEGORIA,
     // FIRST INPUT
-    CHANGE_FIRST_INPUT,
+    CHANGE_FIRST_INPUT, CHANGE_FIRST_TIME,
     // URL
-    CHANGE_URL, DEFAULT_FUENTE
+    CHANGE_URL
 } from '../actions/contextDispatch'
 
 
@@ -29,21 +29,32 @@ import {
 
 
 
-
 export const reducer = (state, action) => {
+
+    const { lenguajeInterface, busqueda, firstInput } = state;
+
+
+    const { idioma, pais, region, fuente, categoria, fecha } = busqueda;
+
+    const { idiomasSeleccionados } = idioma
+    const { paisesSeleccionados } = pais
+    const { regionesSeleccionadas } = region
+    const { fuentesSeleccionadas } = fuente
+    const { categoriasSeleccionadas } = categoria
+
     switch (action.type) {
 
         // HOME
         case GO_HOME:
             return {
                 ...state,
-                isInHome = true
+                isInHome: true
             }
 
         case LEAVE_HOME:
             return {
                 ...state,
-                isInHome = false
+                isInHome: false
             }
 
         // INTERFACE
@@ -64,7 +75,7 @@ export const reducer = (state, action) => {
                     ...busqueda,
                     idioma: {
                         ...idioma,
-                       idiomasSeleccionados:idiomasSeleccionados
+                        idiomasSeleccionados: idiomasSeleccionados
                             .map(idioma => {
                                 if (idioma.idioma === action.payload.idioma) {
                                     return {
@@ -72,6 +83,7 @@ export const reducer = (state, action) => {
                                         seleccionado: true
                                     }
                                 }
+                                return idioma;
                             })
                     }
                 }
@@ -85,13 +97,15 @@ export const reducer = (state, action) => {
                     idioma: {
                         ...idioma,
                         idiomasSeleccionados: idiomasSeleccionados
-                            .map(idioma => {
-                                if (idioma.idioma === action.payload.idioma) {
+                            .map(lenguaje => {
+                                if (lenguaje.idioma === action.payload.idioma) {
                                     return {
-                                        ...idioma,
+                                        ...lenguaje,
                                         seleccionado: false
                                     }
                                 }
+                                return lenguaje;
+
                             })
                     }
                 }
@@ -139,6 +153,8 @@ export const reducer = (state, action) => {
                                         seleccionado: true
                                     }
                                 }
+                                return pais;
+
                             })
                     }
                 }
@@ -158,7 +174,9 @@ export const reducer = (state, action) => {
                                         ...pais,
                                         seleccionado: false
                                     }
-                                }
+                                }                                
+                                return pais
+
                             })
                     }
                 }
@@ -207,6 +225,7 @@ export const reducer = (state, action) => {
                                         seleccionado: true
                                     }
                                 }
+                                return region
                             })
                     }
                 }
@@ -227,6 +246,7 @@ export const reducer = (state, action) => {
                                         seleccionado: false
                                     }
                                 }
+                                return region
                             })
                     }
                 }
@@ -262,35 +282,35 @@ export const reducer = (state, action) => {
         ////////FUENTE
 
         case DEFAULT_FUENTE:
-        return {
-            ...state,
-            busqueda: {
-                ...busqueda,
-                fuente: {
-                    ...fuente,
-                    fuentesDisponibles: action.payload.listObj
+            return {
+                ...state,
+                busqueda: {
+                    ...busqueda,
+                    fuente: {
+                        ...fuente,
+                        fuentesDisponibles: action.payload.listObj
+                    }
                 }
             }
-        }
 
         case ADD_DEFAULT_FUENTE:
-        return {
-            ...state,
-            busqueda: {
-                ...busqueda,
-                fuente: {
-                    ...fuente,
-                    fuentesSeleccionadas: 
-                    action.payload.listObj.map(fuente =>{
-                        return{
-                            fuente: fuente.name,
-                            seleccionado: false
-                        }
-                    })
+            return {
+                ...state,
+                busqueda: {
+                    ...busqueda,
+                    fuente: {
+                        ...fuente,
+                        fuentesSeleccionadas:
+                            action.payload.listObj.map(fuente => {
+                                return {
+                                    fuente: fuente.name,
+                                    seleccionado: false
+                                }
+                            })
+                    }
                 }
             }
-        }
-        
+
         case ADD_FUENTE:
             return {
                 ...state,
@@ -306,6 +326,7 @@ export const reducer = (state, action) => {
                                         seleccionado: true
                                     }
                                 }
+                                return fuente
                             })
                     }
                 }
@@ -326,6 +347,7 @@ export const reducer = (state, action) => {
                                         seleccionado: false
                                     }
                                 }
+                                return fuente
                             })
                     }
                 }
@@ -375,6 +397,8 @@ export const reducer = (state, action) => {
                                         seleccionado: true
                                     }
                                 }
+                                return categoria
+                                
                             })
                     }
                 }
@@ -395,6 +419,7 @@ export const reducer = (state, action) => {
                                         seleccionado: false
                                     }
                                 }
+                                return categoria
                             })
                     }
                 }
@@ -432,7 +457,19 @@ export const reducer = (state, action) => {
         case CHANGE_FIRST_INPUT:
             return {
                 ...state,
-                firstInput : action.payload.url
+                firstInput: {
+                    ...firstInput,
+                    input: action.payload.url
+                }
+            }
+
+        case CHANGE_FIRST_TIME:
+            return {
+                ...state,
+                firstInput: {
+                    ...firstInput,
+                    firstTime: false
+                }
             }
 
         // URL
@@ -443,7 +480,9 @@ export const reducer = (state, action) => {
             }
 
 
-            
+        default:
+            return state;
+
         // ACA TERMINA SWITCH
     }
     // ACA TERMINA REDUCER

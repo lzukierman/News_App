@@ -14,9 +14,9 @@ export const idiomasDisponibles = {
     zh: '中文'
 }
 
-export let idiomasSeleccionados = Object.keys(idiomasDisponibles);
+let idiomas = Object.keys(idiomasDisponibles);
 
-idiomasSeleccionados = idiomasSeleccionados.map(lenguaje => {
+export let idiomasSeleccionados = idiomas.map(lenguaje => {
     return ({
         idioma: lenguaje,
         seleccionado: false
@@ -75,8 +75,6 @@ export let
         })
     })
 
-//FUENTES
-export let fuentesDisponibles = [];
 
 
 //CATEGORIAS
