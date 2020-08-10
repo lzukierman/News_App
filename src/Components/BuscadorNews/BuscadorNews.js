@@ -1,12 +1,12 @@
 import React from 'react'
 
-import './BuscadorNews.css'
+import styles from './BuscadorNews.module.css'
 
 const BuscadorNews = () => {
 
     return(
-        <div className='buscador-news'>
-        <div className="input-data-news">
+        <div className={styles['buscador-news']}>
+        <div className={styles['input-data-news']}>
             <input
                 required
                 type='text'

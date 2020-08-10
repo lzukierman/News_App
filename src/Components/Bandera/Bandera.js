@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useState } from 'react'
 import  China  from '../../svg/banderas/china(cn).svg'
 import  France  from '../../svg/banderas/france(fr).svg'
 import  Germany  from '../../svg/banderas/germany(de).svg'
@@ -13,7 +13,7 @@ import  UnitedKingdom  from '../../svg/banderas/united-kingdom(gb).svg'
 import  Spain  from '../../svg/banderas/spain.svg'
 
 
-const Bandera = ({lenguaje, seleccionada}) => {
+const Bandera = ({lenguaje }) => {
 
     const handleIdioma = idioma => {
         switch (idioma) {
@@ -45,26 +45,12 @@ const Bandera = ({lenguaje, seleccionada}) => {
                 return null
         }
     }
-    const banderaSeleccionada = {
-        height: '28px',
-        paddingRight: '11px'
-    }
 
-    const banderaDeLista = {
-        display:'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: '0',
-        paddingLeft: '22px'
-    }
-
-    const handleStyle = seleccionada => seleccionada? banderaSeleccionada : banderaDeLista; 
 
 
     return(
         <Fragment>
                 <img 
-                style={handleStyle(seleccionada)}
                 src={handleIdioma(lenguaje)}
                 alt={lenguaje}/>
         </Fragment>

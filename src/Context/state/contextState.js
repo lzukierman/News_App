@@ -12,6 +12,13 @@ const {
     categoriasSeleccionadas } = Constants;
 
 export const initialState = {
+    articulos: {
+        results: [],
+        totalResults: undefined,
+        totalResultsPerPage: "default",
+        numOfPages: undefined,
+        actualPage: undefined
+    },
     firstInput: {
         firstTime: true,
         input: ''

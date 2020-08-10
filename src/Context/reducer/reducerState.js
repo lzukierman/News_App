@@ -21,7 +21,10 @@ import {
     // FIRST INPUT
     CHANGE_FIRST_INPUT, CHANGE_FIRST_TIME,
     // URL
-    CHANGE_URL
+    CHANGE_URL,
+    //ARTICULOS
+    ADD_RESULTS, REMOVE_NUM_PAGES,ADD_TOTAL_RESULTS,REMOVE_TOTAL_RESULTS,
+    ADD_NUM_PAGES,  CHANGE_ACTUAL_PAGE, CHANGE_TOTAL_RESULTS_PER_PAGE, REMOVE_RESULTS
 } from '../actions/contextDispatch'
 
 
@@ -31,7 +34,7 @@ import {
 
 export const reducer = (state, action) => {
 
-    const { lenguajeInterface, busqueda, firstInput } = state;
+    const { lenguajeInterface, busqueda, firstInput, articulos } = state;
 
 
     const { idioma, pais, region, fuente, categoria, fecha } = busqueda;
@@ -41,6 +44,7 @@ export const reducer = (state, action) => {
     const { regionesSeleccionadas } = region
     const { fuentesSeleccionadas } = fuente
     const { categoriasSeleccionadas } = categoria
+    const { results,totalResults, totalResultsPerPage, numOfPages, actualPage } = articulos
 
     switch (action.type) {
 
@@ -480,7 +484,84 @@ export const reducer = (state, action) => {
             }
 
 
-        default:
+        // ARTICULOS
+        
+        case ADD_RESULTS:
+            return {
+                ...state,
+                articulos: {
+                    ...articulos,
+                    results: action.payload.result
+                }
+            }
+
+        case REMOVE_RESULTS:
+        return {
+            ...state,
+            articulos: {
+                ...articulos,
+                results: []
+            }
+        }
+
+        case ADD_TOTAL_RESULTS:
+        return {
+            ...state,
+            articulos: {
+                ...articulos,
+                totalResults: action.payload.results
+            }
+        }
+        
+        
+    case REMOVE_TOTAL_RESULTS:
+    return {
+        ...state,
+        articulos: {
+            ...articulos,
+            results: undefined
+        }
+    }
+
+    
+        case ADD_NUM_PAGES:
+        return {
+            ...state,
+            articulos: {
+                ...articulos,
+                numOfPages: action.payload.page
+            }
+        }
+    
+        case REMOVE_NUM_PAGES:
+        return {
+            ...state,
+            articulos: {
+                ...articulos,
+                numOfPages: undefined
+            }
+            
+        }
+        
+        case CHANGE_ACTUAL_PAGE:
+        return {
+            ...state,
+            articulos: {
+                ...articulos,
+                actualPage: action.payload.page
+            }
+        }
+    
+
+        case CHANGE_TOTAL_RESULTS_PER_PAGE: 
+        return{
+            ...state,
+            articulos: {
+                ...articulos,
+                totalResultsPerPage: action.payload.num
+            }
+        }
+    default:
             return state;
 
         // ACA TERMINA SWITCH

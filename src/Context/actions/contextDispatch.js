@@ -25,7 +25,6 @@ export const REMOVE_ALL_REGION = "REMOVE_ALL_REGION";
 
 // FUENTE
 
-
 export const DEFAULT_FUENTE = "DEFAULT_FEUNTE"
 export const ADD_DEFAULT_FUENTE = "ADD_DEFAULT_FUENTE"
 export const ADD_FUENTE = "ADD_FUENTE";
@@ -48,6 +47,15 @@ export const CHANGE_FIRST_INPUT = "CHANGE_FIRST_INPUT";
 //URL 
 export const CHANGE_URL = 'CHANGE_URL'
 
+// ARTICULOS
+export const ADD_RESULTS = "ADD_RESULTS"
+export const REMOVE_RESULTS = "REMOVE_RESULTS"
+export const ADD_TOTAL_RESULTS = "ADD_TOTAL_RESULTS"
+export const REMOVE_TOTAL_RESULTS = "REMOVE_TOTAL_RESULTS"
+export const ADD_NUM_PAGES = "ADD_NUM_PAGES"
+export const REMOVE_NUM_PAGES = "REMOVE_NUM_PAGES"
+export const CHANGE_ACTUAL_PAGE = "CHANGE_ACTUAL_PAGE"
+export const CHANGE_TOTAL_RESULTS_PER_PAGE = "CHANGE_TOTAL_RESULTS_PER_PAGE"
 
 // HOME ACTIONS
 export let goHome = () => {
@@ -92,15 +100,15 @@ export let removeIdioma = idioma => {
         payload: {
             idioma
         }
-       
+
     }
 }
 
 export let addAllIdioma = () => {
     return {
         type: ADD_ALL_IDIOMA,
-   
-     }
+
+    }
 }
 
 export let removeAllIdioma = () => {
@@ -126,14 +134,14 @@ export let removePais = pais => {
         payload: {
             pais
         }
-       
+
     }
 }
 
 export let addAllPais = () => {
     return {
         type: ADD_ALL_PAIS,
-     }
+    }
 }
 
 export let removeAllPais = () => {
@@ -159,14 +167,14 @@ export let removeRegion = region => {
         payload: {
             region
         }
-       
+
     }
 }
 
 export let addAllRegion = () => {
     return {
         type: ADD_ALL_REGION,
-     }
+    }
 }
 
 export let removeAllRegion = () => {
@@ -180,7 +188,7 @@ export let removeAllRegion = () => {
 // FUENTE ACTIONS
 
 export let defaultFuente = listObj => {
-    return{
+    return {
         type: DEFAULT_FUENTE,
         payload: {
             listObj
@@ -212,14 +220,14 @@ export let removeFuente = fuente => {
         payload: {
             fuente
         }
-       
+
     }
 }
 
 export let addAllFuente = () => {
     return {
         type: ADD_ALL_FUENTE,
-     }
+    }
 }
 
 export let removeAllFuente = () => {
@@ -244,14 +252,14 @@ export let removeCategoria = categoria => {
         payload: {
             categoria
         }
-       
+
     }
 }
 
 export let addAllCategoria = () => {
     return {
         type: ADD_ALL_CATEGORIA,
-     }
+    }
 }
 
 export let removeAllCategoria = () => {
@@ -286,6 +294,76 @@ export let changeUrl = (url) => {
         type: CHANGE_URL,
         payload: {
             url
+        }
+    }
+}
+
+
+///ARTICULOS ACTIONS
+
+export let addResults = (result) => {
+    return {
+        type: ADD_RESULTS,
+        payload: {
+            result
+        }
+    }
+
+}
+
+export let removeResults = () => {
+    return {
+        type: REMOVE_RESULTS
+    }
+}
+
+export let addTotalResults = (results) => {
+    return {
+        type: ADD_TOTAL_RESULTS,
+        payload: {
+            results
+        }
+    }
+}
+
+export let removeTotalResults = () => {
+    return {
+        type: REMOVE_TOTAL_RESULTS
+    }
+}
+
+export let addNumPages = (page) => {
+    return {
+        type: ADD_NUM_PAGES,
+        payload: {
+            page
+        }
+    }
+}
+
+
+
+export let removeNumPages = () => {
+    return {
+        type: REMOVE_NUM_PAGES,
+    }
+}
+
+
+export let changeActualPage = (page) => {
+    return {
+        type: CHANGE_ACTUAL_PAGE,
+        payload: {
+            page
+        }
+    }
+}
+
+export let changeTotalResultsPerPage = (num) => {
+    return {
+        type: CHANGE_TOTAL_RESULTS_PER_PAGE,
+        payload: {
+            num
         }
     }
 }

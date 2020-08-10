@@ -3,7 +3,7 @@ import LogoImagen from '../../png/logo.png'
 import { StateContext, DispatchContext } from '../../App'
 import {goHome} from '../../Context/actions/contextDispatch'
 
-import './Logo.css'
+import styles from './Logo.module.css'
 
 
 const Logo = () => {
@@ -23,7 +23,7 @@ const Logo = () => {
             onClick={handleClick}
             src={LogoImagen}
              alt='logo'
-             className='logo'/>
+             className={styles.logo}/>
         </Fragment>
     )
 }

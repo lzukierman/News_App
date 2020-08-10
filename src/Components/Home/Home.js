@@ -2,7 +2,7 @@ import React from 'react'
 import BuscadorHome from '../BuscadorHome/BuscadorHome'
 import IdiomasDisponibles from '../IdiomasDisponibles/IdiomasDisponibles'
 import Carrousel from '../Carrousel/Carrousel'
-import './Home.css'
+import styles from './Home.module.css'
 
 const Home = () => {
 
@@ -11,7 +11,7 @@ const Home = () => {
       
     return (
         
-        <div className='home-container'>
+        <div className={styles['home-container']}>
             <Carrousel>
                 <IdiomasDisponibles/>
                 <BuscadorHome/>

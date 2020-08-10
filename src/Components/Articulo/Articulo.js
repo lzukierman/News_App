@@ -4,7 +4,7 @@ import { StateContext } from '../../App'
 import iconoDiario from '../Articulo/iconos/flecha.png'
 import 'moment/min/locales'
 
-import './Articulo.css';
+import styles from './Articulo.module.css';
 
 
 const Articulo = ({ articulo }) => {
@@ -73,7 +73,17 @@ const Articulo = ({ articulo }) => {
         e.target.src = `https://bitsofco.de/content/images/2018/12/broken-1.png`
     }
 
-    const contenido = () => description === '' || description === null ? limpiador(content, '[') : description;
+    const contenido = () => {
+        if(description === '' || description === null){
+            if(content === '' || content === null){
+                return "More info in Ver Mas"
+            } else {
+                return limpiador(content, '[');
+            }
+        } else{
+            return description
+        }
+    }
 
     const limpiador = (string, element) => {
         let contenido = string.split('');
@@ -103,33 +113,33 @@ const Articulo = ({ articulo }) => {
 
 
     return (
-        <div className='articulo'>
+        <div className={styles.articulo}>
             <div>
                 <img
                     onError={addDefaultImage}
                     alt={title}
                     src={corregirUrl(urlToImage)}
-                    className='articulo__imagen' />
-                <p className='fechaImagen'>{transformarFecha()}</p>
+                    className={styles['articulo__imagen']} />
+                <p className={styles['fechaImagen']}>{transformarFecha()}</p>
             </div>
-            <div className='fuente'>
+            <div className={styles.fuente}>
                 {source.name}
             </div>
-            <div className='titulo'>
+            <div className={styles.titulo}>
                 {title}
             </div>
-            <div className='descripcion'>
+            <div className={styles.descripcion}>
                 {contenido()}
             </div>
             {/* </section> */}
-            <div className='articulo__footer'>
+            <div className={styles['articulo__footer']}>
                 <a
-                    className='verMas'
+                    className={styles['verMas']}
                     href={url}
                     target='_blank'
                     rel='noopener noreferrer'>
                     Ver mas
-                    <img className='imagen-icono' src={iconoDiario} alt='newspaper' />
+                    <img className={styles['imagen-icono']} src={iconoDiario} alt='newspaper' />
                 </a>
             </div>
         </div>

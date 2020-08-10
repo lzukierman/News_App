@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { createClient } from 'pexels'
-import { keyPexels } from '../../initialValues'
 import ReactPlayer from 'react-player'
 
-import './Carrousel.css'
+import styles from './Carrousel.module.css'
 
-const client = createClient(keyPexels);
+const client = createClient(process.env.REACT_APP_KEY_PEXELS);
 
 
 
@@ -40,7 +39,7 @@ const Carrousel = ({children}) => {
         // <video autoPlay muted>
         //     <source src={url} type={videos.file_type}/>
         // </video>
-        <div className='carrousel'>
+        <div className={styles.carrousel}>
             <ReactPlayer
                 // className='video'
                 url={videos.link}

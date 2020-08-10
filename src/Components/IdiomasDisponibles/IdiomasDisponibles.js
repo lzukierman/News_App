@@ -1,10 +1,10 @@
 import React, { useState, useContext, useEffect } from 'react'
 import Bandera from '../Bandera/Bandera'
 import useComponentVisible from '../../Hooks/useComponentVisible'
-import { addIdioma, changeInterface,removeIdioma } from '../../Context/actions/contextDispatch'
+import { addIdioma, changeInterface,removeAllIdioma } from '../../Context/actions/contextDispatch'
 import { StateContext, DispatchContext } from '../../App'
 import 'font-awesome/css/font-awesome.min.css'
-import './IdiomasDisponibles.css'
+import styles from './IdiomasDisponibles.module.css'
 
 
 
@@ -17,14 +17,12 @@ const IdiomasDisponibles = () => {
     const { isInHome, lenguajeInterface, firstInput } = state
     const { idiomasDisponibles, idiomaInterface } = lenguajeInterface
     const { ref, isComponentVisible, setIsComponentVisible } = useComponentVisible(false);
-    const [claseContenedor, setClaseContenedor] = useState('contenedor-idiomas')
-    const [idioma, setIdioma] = useState("en")
+    const [claseContenedor, setClaseContenedor] = useState(styles['contenedor-idiomas'])
     const idiomas = Object.keys(idiomasDisponibles)
 
 
   // tiene q ir a la par el interface e idioma,
   // y estar atento a cambios en el boton de idioma para actualizarlos y tambien el idioma seleccionado
-
 
 
     const toggleIsVisible = () => {
@@ -42,35 +40,25 @@ const IdiomasDisponibles = () => {
     useEffect(() => {
 
         if (isComponentVisible) {
-            setClaseContenedor('contenedor-idiomas show')
+            setClaseContenedor(`${styles['contenedor-idiomas']} ${styles.show}`)
         } else {
-            setClaseContenedor('contenedor-idiomas')
+            setClaseContenedor(styles['contenedor-idiomas'])
         }
     }, [isComponentVisible])
 
     const handleLenguaje = (lenguaje) => {
-        if(firstInput.firstTime && isInHome){
-                dispatch(removeIdioma(idioma))
-                dispatch(addIdioma(lenguaje))
-                dispatch(changeInterface(lenguaje))
-                setIdioma(lenguaje)
-                toggleIsVisible();
-                toggleInvisible()
-            } else {
-                dispatch(changeInterface(lenguaje))
-                toggleIsVisible();
-                toggleInvisible()
-            }
+            dispatch(changeInterface(lenguaje))
+            toggleIsVisible();
+            toggleInvisible()
     }
 
 
 
     return (
-        <nav className='nav-idiomas'>
-            <div className='idioma' onClick={toggleIsVisible} ref={ref} >
+        <nav className={styles['nav-idiomas']}>
+            <div className={styles.idioma} onClick={toggleIsVisible} ref={ref} >
                 <Bandera
                     lenguaje={idiomaInterface}
-                    seleccionada={true}
                 />
 
                 {idiomasDisponibles[idiomaInterface]}
@@ -79,19 +67,18 @@ const IdiomasDisponibles = () => {
             <div
                 className={claseContenedor}
             >
-                <ul className='menu-idiomas'>
+                <ul className={styles['menu-idiomas']}>
                     {
                         idiomas.map((idioma, index) => {
                             if (idioma !== idiomaInterface) {
                                 return (
                                     <li
                                         key={index}
-                                        className='idioma a-seleccionar'
+                                        className={`${styles.idioma} ${styles['a-seleccionar']}`}
                                         onClick={(e) => handleLenguaje(idioma)}>
                                         <Bandera
                                             lenguaje={idioma}
-                                            seleccionada={false}
-                                            className='bandera-a-seleccionar' />
+                                            className={styles['bandera-a-seleccionar']} />
                                         {<p> {idiomasDisponibles[idioma]}</p>}
                                     </li>
                                 )
@@ -106,3 +93,4 @@ const IdiomasDisponibles = () => {
 }
 
 export default IdiomasDisponibles
+
